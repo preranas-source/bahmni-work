@@ -1,0 +1,37 @@
+{
+  "loginPage": {
+    "logo": "/bahmni/images/swastikLogoFull.png",
+    "showHeaderText": true,
+    "showTitleText": true,
+    "bottomLogos": []
+  },
+  "homePage": {
+    "header_text": "WELCOME TO SWASTIK HOSPITAL",
+    "logo": "/bahmni/images/swastikLogoFull.png",
+    "title_text": "SWASTIK HOSPITAL",
+    "bottomBanner": ""
+  },
+  "helpLink": {
+    "url": "#"
+  },
+  "landingPage": [
+    {
+      "enabled": true,
+      "title": "CLINICAL SERVICE",
+      "logo": "/bahmni/images/app.png",
+      "link": "/bahmni/clinical/index.html#/swastik/landing"
+    },
+    {
+      "enabled": true,
+      "title": "PAYMENT & BILLING",
+      "logo": "/bahmni/images/bills.png",
+      "link": "/bahmni/home/index.html#/dashboard"
+    },
+    {
+      "enabled": true,
+      "title": "ANALYTICS",
+      "logo": "/bahmni/images/analytics.png",
+      "link": "/bahmni/home/index.html#/dashboard"
+    }
+  ]
+}

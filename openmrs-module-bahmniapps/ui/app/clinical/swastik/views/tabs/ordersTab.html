@@ -1,0 +1,17 @@
+<!-- Orders Tab -->
+<div class="orders-tab">
+    <h3>Orders</h3>
+    <table class="orders-table">
+        <thead>
+            <tr><th>Type</th><th>Order</th><th>Status</th><th>Date</th></tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="order in orders" ng-class="'status-' + order.status.toLowerCase()">
+                <td>{{order.type}}</td>
+                <td>{{order.name}}</td>
+                <td><span class="status-badge" ng-class="'status-' + order.status.toLowerCase()">{{order.status}}</span></td>
+                <td>{{order.date}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,32 @@
+<!-- Discharge Summary Tab -->
+<div class="discharge-tab">
+    <h3>Discharge Summary</h3>
+    <div class="discharge-summary">
+        <section>
+            <h4>Diagnosis</h4>
+            <ul>
+                <li ng-repeat="d in consultationData.diagnosis">{{d}}</li>
+            </ul>
+        </section>
+        <section>
+            <h4>Treatment Given</h4>
+            <p>Medications and procedures during admission.</p>
+        </section>
+        <section>
+            <h4>Medications at Discharge</h4>
+            <table class="prescription-table">
+                <tr ng-repeat="p in consultationData.prescriptions">
+                    <td>{{p.drug}}</td><td>{{p.dose}}</td><td>{{p.duration}}</td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <h4>Therapy Summary</h4>
+            <p>Physiotherapy sessions completed.</p>
+        </section>
+        <section>
+            <h4>Follow-up Advice</h4>
+            <p>Follow-up on: {{consultationData.followUpDate}}</p>
+        </section>
+    </div>
+</div>

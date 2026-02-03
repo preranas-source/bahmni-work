@@ -1,0 +1,944 @@
+/**
+ * Swastik Hospital – Modern UI design system
+ * Login, location selection, dashboard. Production-ready, accessible, responsive.
+ * No logic/API changes – UI/UX and CSS only.
+ */
+
+/* ========== Design tokens (single source of truth) ========== */
+
+
+
+:root {
+  /* Colors – minimal, accessible (WCAG-friendly contrast) */
+  --color-primary: #2d6a6a;
+  --color-primary-hover: #245757;
+  --color-primary-muted: rgba(45, 106, 106, 0.12);
+  --color-primary-focus: rgba(45, 106, 106, 0.25);
+  --color-text: #1a2b2b;
+  --color-text-secondary: #4a5f5f;
+  --color-text-muted: #6b7c7c;
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-border-focus: var(--color-primary);
+  --color-bg-page-start: #f7fbfc;
+  --color-bg-page-mid: #ffffff;
+  --color-bg-page-end: #ffffff;
+  --color-bg-surface: #ffffff;
+  --color-bg-surface-subtle: rgba(255, 255, 255, 0.9);
+  --color-bg-footer: linear-gradient(180deg, #e8f4f7 0%, #dceef2 100%);
+  --color-error-bg: rgba(211, 47, 47, 0.08);
+  --color-error-border: rgba(211, 47, 47, 0.25);
+  --color-error-text: #b71c1c;
+  --color-warning-text: #7d5a00;
+
+  /* Spacing scale (4px base) */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-28: 28px;
+  --space-32: 32px;
+  --space-36: 36px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-64: 64px;
+
+  /* Typography */
+  --font-sans: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 15px;
+  --text-md: 16px;
+  --text-lg: 17px;
+  --text-xl: 18px;
+  --text-2xl: 20px;
+  --text-3xl: 24px;
+  --leading-tight: 1.35;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.6;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --shadow-focus: 0 0 0 3px var(--color-primary-focus);
+
+  /* Layout */
+  --content-max: 480px;
+  --content-max-wide: 640px;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 600px;
+}
+
+/* Base */
+.reg-wrapper,
+.dashboard {
+  box-sizing: border-box;
+}
+
+.reg-wrapper *,
+.dashboard *,
+.power-by * {
+  box-sizing: border-box;
+}
+
+/* ----- Font Awesome (icons when home.css is missing) ----- */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('fonts/fontawesome-webfont.eot?v=4.3.0');
+  src: url('fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'),
+    url('fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2'),
+    url('fonts/fontawesome-webfont.woff?v=4.3.0') format('woff'),
+    url('fonts/fontawesome-webfont.ttf?v=4.3.0') format('truetype'),
+    url('fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-white {
+  color: #fff;
+}
+
+[class^="fa-"]:before,
+[class*=" fa-"]:before {
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+.fa-user:before {
+  content: "\f007";
+}
+
+.fa-stethoscope:before {
+  content: "\f0f1";
+}
+
+.fa-bar-chart:before {
+  content: "\f080";
+}
+
+.fa-pencil-square-o:before {
+  content: "\f044";
+}
+
+.fa-flask:before {
+  content: "\f0c3";
+}
+
+.fa-cogs:before {
+  content: "\f085";
+}
+
+.fa-paperclip:before {
+  content: "\f0c6";
+}
+
+.fa-calendar:before {
+  content: "\f073";
+}
+
+.fa-circle:before {
+  content: "\f111";
+}
+
+.fa-user-md:before {
+  content: "\f0f0";
+}
+
+.fa-caret-down:before {
+  content: "\f0d7";
+}
+
+.fa-key:before {
+  content: "\f084";
+}
+
+.fa-map-marker:before {
+  content: "\f041";
+}
+
+.fa-power-off:before {
+  content: "\f011";
+}
+
+.fa-exclamation-triangle:before {
+  content: "\f071";
+}
+
+.fa-home:before {
+  content: "\f015";
+}
+
+.fa-check-circle:before {
+  content: "\f058";
+}
+
+/* ----- Page wrapper (login & location) ----- */
+/* .reg-wrapper {
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background: linear-gradient(165deg, var(--color-bg-page-start) 0%, var(--color-bg-page-mid) 40%, var(--color-bg-page-end) 100%);
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--space-32) var(--space-24) 100px;
+} */
+.reg-wrapper {
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background: #ffffff !important;
+  /* MATCH Bahmni */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px 24px 100px;
+}
+
+.reg-wrapper .messages ul,
+.reg-wrapper .messages ul li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#view-content,
+.login-page-container {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 0 var(--space-24);
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ----- Logo block (more space below so logo sits higher, not close to login text) ----- */
+/* .login-page-container .clint-logo-wrapper {
+  padding: var(--space-24) 0 var(--space-36) !important;
+  margin-bottom: 0 !important;
+  width: 100%;
+  text-align: center;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+} */
+/* ===== Logo + Hospital name (perfect alignment) ===== */
+.login-page-container .clint-logo-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  /* true vertical centering */
+  justify-content: center !important;
+  gap: 6px !important;
+  /* clean, tight spacing */
+  padding: var(--space-24) 0 var(--space-28) !important;
+  margin: 0 !important;
+  width: 100%;
+  text-align: center;
+  background: transparent !important;
+}
+
+
+/* Wrapper for logo + text */
+.login-page-container .clint-logo-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 1px !important;
+  /* space between logo and text */
+  margin-top: 20px !important;
+  margin-bottom: 10px !important;
+}
+
+/* Logo image – make it bigger */
+/* .login-page-container .clint-logo-wrapper img.implementor-logo {
+  max-width: 400px !important;
+  
+  max-height: 200px !important;
+
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+} */
+
+.login-page-container .clint-logo-wrapper img.implementor-logo {
+  max-width: 180px !important;
+  /* key fix: control width, not height */
+  max-height: 180px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* Add hospital name text */
+/* .login-page-container .clint-logo-wrapper::after {
+  content: "Swastik Hospital";
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f4c5c;
+  
+  white-space: nowrap;
+} */
+.login-page-container .clint-logo-wrapper::after {
+  content: "Swastik Hospital";
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f4c5c;
+  line-height: 1;
+  /* IMPORTANT */
+  display: flex;
+  align-items: center;
+  /* centers text vertically */
+  height: 100%;
+  white-space: nowrap;
+}
+
+/* .login-page-container .clint-logo-wrapper img.implementor-logo {
+  max-width: 320px !important;
+  width: auto !important;
+  height: auto !important;
+  max-height: 140px !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 0 auto !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+} */
+
+.login-page-container .clint-logo-wrapper span.title_text {
+  display: block !important;
+  margin-top: var(--space-12) !important;
+  color: var(--color-text) !important;
+  font-size: var(--text-lg) !important;
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: 0.02em;
+}
+
+/* ----- Section heading above form ----- */
+.login-page-container .emr-login-text {
+  display: block !important;
+  margin: 0 0 var(--space-16) !important;
+  text-align: center !important;
+  font-size: var(--text-xl) !important;
+  font-weight: var(--font-semibold) !important;
+  color: var(--color-text-secondary) !important;
+  line-height: var(--leading-tight);
+  letter-spacing: 0.02em;
+}
+
+/* ----- Login / location form – container with border ----- */
+/* .login-page-container .login {
+  width: 100% !important;
+  max-width: 100%;
+  margin: 0 auto var(--space-32) !important;
+  min-height: 260px;
+  background: var(--color-bg-surface) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-md) !important;
+  overflow: hidden !important;
+} */
+.login-page-container .login {
+  width: 100% !important;
+  max-width: 100%;
+  margin: 0 auto var(--space-32) !important;
+  min-height: 260px;
+  background: #ffffff !important;
+  border: 2px solid #cfdede !important;
+  /* stronger border */
+  border-radius: var(--radius-xl) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+  overflow: hidden !important;
+}
+
+.login-page-container .login header.reg-header {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-primary) !important;
+  color: #fff !important;
+  padding: var(--space-16) var(--space-24) !important;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0 !important;
+  font-size: var(--text-lg) !important;
+  font-weight: var(--font-semibold);
+  min-height: 52px;
+  letter-spacing: 0.02em;
+}
+
+.login-page-container .login header.reg-header .left {
+  max-width: 50%;
+}
+
+.login-page-container .login header.reg-header .locale-wrapper {
+  font-size: var(--text-sm) !important;
+  font-weight: var(--font-medium);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.login-page-container .login header.reg-header .locale-wrapper select {
+  margin-left: var(--space-8);
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-sm);
+  border: 1px solid #ffffff;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+.login-page-container .login header.reg-header .header-title {
+  width: 100%;
+  text-align: center;
+  font-weight: var(--font-semibold);
+}
+
+.login-page-container .login .login-body {
+  padding: var(--space-28) var(--space-24) var(--space-24) !important;
+  background: var(--color-bg-surface) !important;
+  border: none !important;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl) !important;
+  border-top: none !important;
+}
+
+.login-page-container .login .login-body .note-container {
+  margin-bottom: var(--space-16);
+}
+
+.login-page-container .login .login-body .note.error {
+  color: var(--color-error-text);
+  font-size: var(--text-sm);
+  text-align: center;
+  padding: var(--space-12) var(--space-16);
+  background: var(--color-error-bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-error-border);
+  line-height: var(--leading-normal);
+}
+
+.login-page-container .login .login-body .form-field {
+  margin-bottom: var(--space-20) !important;
+}
+
+.login-page-container .login .login-body .form-field .field-attribute label {
+  display: block;
+  margin-bottom: var(--space-8);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  letter-spacing: 0.01em;
+}
+
+.login-page-container .login .login-body .form-field .field-attribute .asterick {
+  color: var(--color-error-text);
+}
+
+/* Inputs & select – consistent, accessible */
+.login-page-container .login .login-body .form-field .field-value input[type="text"],
+.login-page-container .login .login-body .form-field .field-value input[type="password"],
+.login-page-container .login .login-body .form-field .field-value select {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: var(--space-12) var(--space-16) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-md) !important;
+  font-size: var(--text-base) !important;
+  font-family: var(--font-sans);
+  background: #fafbfc !important;
+  color: var(--color-text) !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease !important;
+}
+
+.login-page-container .login .login-body .form-field .field-value select {
+  cursor: pointer;
+}
+
+.login-page-container .login .login-body .form-field .field-value input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.login-page-container .login .login-body .form-field .field-value input:focus,
+.login-page-container .login .login-body .form-field .field-value select:focus {
+  outline: none !important;
+  border-color: var(--color-border-focus) !important;
+  box-shadow: var(--shadow-focus) !important;
+  background: #fff !important;
+}
+
+/* Button – primary CTA */
+.login-page-container .login .login-body .form-footer {
+  margin-top: var(--space-24) !important;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+}
+
+.login-page-container .login .login-body .form-footer button.confirm {
+  width: 100% !important;
+  padding: var(--space-16) var(--space-24) !important;
+  font-size: var(--text-md) !important;
+  font-weight: var(--font-semibold) !important;
+  font-family: var(--font-sans);
+  background: var(--color-primary) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--radius-md) !important;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  line-height: var(--leading-tight);
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.login-page-container .login .login-body .form-footer button.confirm:hover {
+  background: var(--color-primary-hover) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.login-page-container .login .login-body .form-footer button.confirm:active {
+  transform: translateY(0) !important;
+}
+
+/* Warning message */
+.login-page-container .warning-message {
+  text-align: center !important;
+  margin-top: var(--space-20) !important;
+  color: var(--color-warning-text) !important;
+  font-size: var(--text-sm) !important;
+  padding: 0 var(--space-8) !important;
+  line-height: var(--leading-normal);
+}
+
+.login-page-container .warning-message span {
+  font-weight: var(--font-semibold);
+}
+
+.login-page-container .warning-message p {
+  margin: var(--space-4) 0 0 !important;
+  padding: 0 !important;
+}
+
+/* Bottom logos (optional) */
+.login-page-container .bottom-logos-wrapper {
+  width: 100% !important;
+  margin: var(--space-20) auto var(--space-16) !important;
+  text-align: center !important;
+}
+
+.login-page-container .bottom-logos-wrapper img {
+  max-width: 120px !important;
+  max-height: 56px !important;
+  object-fit: contain !important;
+  margin: 0 var(--space-8) !important;
+}
+
+/* ----- Footer ----- */
+
+/* ===== Footer (Bahmni-style minimal) ===== */
+.power-by {
+  position: fixed !important;
+  bottom: 16px !important;
+  /* slight lift from bottom */
+  left: 0 !important;
+  right: 0 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  font-family: var(--font-sans);
+  font-size: 12px !important;
+  font-weight: 500;
+  color: #777 !important;
+
+  padding: 0 !important;
+  z-index: 10;
+}
+
+/* Footer logo */
+/* ===== Footer (Bahmni-style minimal) ===== */
+/* ===== Footer (refined Bahmni-style) ===== */
+.power-by {
+  position: fixed !important;
+  bottom: 16px !important;
+  left: 0 !important;
+  right: 0 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  font-family: var(--font-sans);
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  /* 🔹 little bit bold */
+  color: #151515 !important;
+
+  padding: 0 !important;
+  z-index: 10;
+}
+
+/* Footer logo – slightly bigger */
+.power-by img {
+  max-width: 130px !important;
+  /* 🔹 increased */
+  max-height: 64px !important;
+  /* 🔹 increased */
+  object-fit: contain !important;
+  margin: 0 !important;
+}
+
+/* ===== Remove footer background completely ===== */
+.power-by {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove any background from footer image/object */
+.power-by img {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  filter: none !important;
+}
+
+/* Footer links */
+.power-by a {
+  color: #666 !important;
+  text-decoration: none !important;
+}
+
+.power-by a:hover {
+  text-decoration: underline !important;
+}
+
+/* .power-by {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: var(--space-12) !important;
+  flex-wrap: wrap !important;
+  padding: var(--space-14) var(--space-24) !important;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm) !important;
+  font-weight: var(--font-medium);
+  color: var(--color-text-secondary) !important;
+  background: var(--color-bg-footer) !important;
+  border-top: 1px solid var(--color-border) !important;
+  z-index: 100;
+}
+
+.power-by img {
+  max-width: 165px !important;
+  max-height: 62px !important;
+  height: auto !important;
+  object-fit: contain !important;
+  margin: 0 !important;
+  vertical-align: middle !important;
+}
+
+.power-by a {
+  color: var(--color-text) !important;
+  text-decoration: none !important;
+  font-weight: var(--font-medium) !important;
+} */
+
+.power-by a:hover {
+  text-decoration: underline !important;
+}
+
+/* ========== Dashboard (after login) ========== */
+.dashboard {
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background: linear-gradient(165deg, var(--color-bg-page-start) 0%, var(--color-bg-page-mid) 45%, var(--color-bg-page-end) 100%);
+  background-attachment: fixed;
+  padding-bottom: var(--space-48);
+}
+
+.dashboard header.reg-header {
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-end;
+  background: var(--color-primary) !important;
+  color: #fff !important;
+  padding: var(--space-14) var(--space-24) !important;
+  min-height: 56px !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.dashboard .reg-header-right {
+  display: flex !important;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+  margin: 0 !important;
+  position: relative;
+}
+
+.dashboard .change-location select {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  padding: var(--space-8) var(--space-12) !important;
+  border-radius: var(--radius-sm) !important;
+  font-size: var(--text-sm) !important;
+  cursor: pointer;
+}
+
+.dashboard .change-location select option {
+  background: var(--color-bg-surface) !important;
+  color: var(--color-text) !important;
+}
+
+.dashboard .btn-user-info {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  color: #fff !important;
+  padding: var(--space-8) var(--space-16) !important;
+  border-radius: var(--radius-sm) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: var(--space-8) !important;
+  font-size: var(--text-sm);
+}
+
+.dashboard .btn-user-info:hover {
+  background: rgba(255, 255, 255, 0.28) !important;
+}
+
+.dashboard .btn-user-info i.fa {
+  color: #fff !important;
+}
+
+.dashboard .reg-header-right ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: absolute !important;
+  top: 100%;
+  right: 0;
+  margin-top: var(--space-4) !important;
+  min-width: 200px;
+  background: var(--color-bg-surface) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border: 1px solid var(--color-border) !important;
+  display: none !important;
+  z-index: 1000;
+}
+
+.dashboard .reg-header-right:hover ul,
+.dashboard .reg-header-right ul.active {
+  display: block !important;
+}
+
+.dashboard .reg-header-right ul li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-bottom: 1px solid var(--color-border) !important;
+}
+
+.dashboard .reg-header-right ul li:last-child {
+  border-bottom: none !important;
+}
+
+.dashboard .reg-header-right ul li a {
+  display: flex !important;
+  align-items: center !important;
+  gap: var(--space-12) !important;
+  padding: var(--space-12) var(--space-16) !important;
+  color: var(--color-text) !important;
+  text-decoration: none !important;
+  font-size: var(--text-base) !important;
+  line-height: var(--leading-normal);
+}
+
+.dashboard .reg-header-right ul li a:hover {
+  background: var(--color-bg-page-end) !important;
+}
+
+.dashboard .reg-header-right ul li a.disabled {
+  cursor: default;
+  color: var(--color-text-muted) !important;
+}
+
+.dashboard .reg-header-right ul li a i.fa {
+  color: var(--color-primary) !important;
+  width: 20px;
+  text-align: center;
+}
+
+/* Dashboard apps grid */
+.dashboard .apps {
+  width: 100% !important;
+  max-width: var(--content-max-wide) !important;
+  margin: var(--space-48) auto var(--space-40) !important;
+  padding: 0 var(--space-24) !important;
+}
+
+.dashboard .apps ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: var(--space-24) !important;
+}
+
+.dashboard .apps ul li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.dashboard .apps ul li a.button.app.big {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 120px !important;
+  padding: var(--space-24) var(--space-16) !important;
+  background: var(--color-bg-surface) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-sm) !important;
+  text-decoration: none !important;
+  color: var(--color-text) !important;
+  font-size: var(--text-base) !important;
+  font-weight: var(--font-semibold) !important;
+  text-align: center !important;
+  line-height: var(--leading-tight);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease !important;
+}
+
+.dashboard .apps ul li a.button.app.big:hover {
+  box-shadow: var(--shadow-md) !important;
+  transform: translateY(-2px) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+.dashboard .apps ul li a.button.app.big i {
+  display: block !important;
+  font-size: 42px !important;
+  margin: 0 0 var(--space-12) !important;
+  color: var(--color-primary) !important;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 600px) {
+  :root {
+    --content-max: 100%;
+  }
+
+  .reg-wrapper {
+    padding: var(--space-20) var(--space-16) 88px;
+  }
+
+  .login-page-container .clint-logo-wrapper {
+    padding: var(--space-20) 0 var(--space-28) !important;
+  }
+
+  .login-page-container .clint-logo-wrapper img.implementor-logo {
+    max-width: 260px !important;
+    max-height: 100px !important;
+  }
+
+  .login-page-container .login header.reg-header {
+    padding: var(--space-12) var(--space-16) !important;
+    font-size: var(--text-md) !important;
+  }
+
+  .login-page-container .login .login-body {
+    padding: var(--space-20) var(--space-16) var(--space-20) !important;
+  }
+
+  .login-page-container .login .login-body .form-field .field-value input[type="text"],
+  .login-page-container .login .login-body .form-field .field-value input[type="password"],
+  .login-page-container .login .login-body .form-field .field-value select {
+    padding: var(--space-12) var(--space-14) !important;
+  }
+
+  .login-page-container .login .login-body .form-footer button.confirm {
+    padding: var(--space-14) var(--space-20) !important;
+  }
+
+  .power-by {
+    padding: var(--space-12) var(--space-16) !important;
+    font-size: var(--text-xs) !important;
+  }
+
+  .power-by img {
+    max-width: 140px !important;
+    max-height: 52px !important;
+  }
+
+  .dashboard .apps ul {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: var(--space-16) !important;
+  }
+
+  .dashboard .apps ul li a.button.app.big {
+    min-height: 100px !important;
+    padding: var(--space-20) var(--space-12) !important;
+    font-size: var(--text-sm) !important;
+  }
+
+  .dashboard .apps ul li a.button.app.big i {
+    font-size: 36px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .dashboard .apps ul {
+    grid-template-columns: 1fr !important;
+  }
+}

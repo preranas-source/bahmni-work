@@ -1,0 +1,93 @@
+<!-- Swastik Hospital - Clinical Landing Page -->
+<div class="swastik-clinical-landing">
+    <header class="swastik-clinical-header">
+        <h1><i class="fa fa-stethoscope"></i> Swastik Hospital - Clinical</h1>
+        <a href="../home/index.html#/dashboard" class="btn-back"><i class="fa fa-home"></i> Dashboard</a>
+    </header>
+
+    <!-- Patient Search Section -->
+    <section class="search-section">
+        <div class="search-bar-wrapper">
+            <i class="fa fa-search search-icon"></i>
+            <input type="text" 
+                   class="search-input" 
+                   placeholder="Search by UHID, Name, Mobile, or Token..." 
+                   ng-model="searchQuery" 
+                   ng-change="searchPatients()"
+                   ng-keyup="$event.keyCode===13 && searchPatients()" />
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="filter-group">
+            <label>Department</label>
+            <select ng-model="filters.type" ng-change="onFilterChange()">
+                <option value="OPD">OPD</option>
+                <option value="IPD">IPD</option>
+                <option value="Rehab">Rehab</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Assigned Doctor</label>
+            <select ng-model="filters.doctor" ng-change="onFilterChange()">
+                <option value="">All Doctors</option>
+                <option ng-repeat="doc in doctors" value="{{doc.name}}">{{doc.name}}</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Date</label>
+            <select ng-model="filters.dateRange" ng-change="onFilterChange()">
+                <option value="today">Today</option>
+                <option value="previous">Previous</option>
+            </select>
+        </div>
+    </section>
+
+    <div class="landing-content">
+        <!-- Today's Queue (OPD/IPD/Rehab) -->
+        <section class="queue-section">
+            <h2><i class="fa fa-list"></i> Today's Queue</h2>
+            <div class="queue-table-wrapper">
+                <table class="queue-table">
+                    <thead>
+                        <tr>
+                            <th>Token</th>
+                            <th>Patient Name</th>
+                            <th ng-if="filters.type==='OPD'">Status</th>
+                            <th ng-if="filters.type==='IPD'">Bed / Ward</th>
+                            <th ng-if="filters.type==='Rehab'">Session</th>
+                            <th>Doctor</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in queue" ng-click="openPatient({uuid: item.patientUuid})" class="queue-row">
+                            <td>{{item.token || '-'}}</td>
+                            <td>{{item.name}}</td>
+                            <td ng-if="filters.type==='OPD'">
+                                <span class="status-badge" ng-class="'status-' + item.status.toLowerCase().replace(' ', '-')">{{item.status}}</span>
+                            </td>
+                            <td ng-if="filters.type==='IPD'">{{item.bedNo}} / {{item.ward}}</td>
+                            <td ng-if="filters.type==='Rehab'">{{item.session}}</td>
+                            <td>{{item.doctor}}</td>
+                            <td><button class="btn-open" ng-click="openPatient({uuid: item.patientUuid}); $event.stopPropagation()"><i class="fa fa-folder-open"></i> Open</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Search Results (quick access) -->
+        <section class="search-results-section">
+            <h2><i class="fa fa-users"></i> Quick Search Results</h2>
+            <div class="patient-tiles">
+                <div class="patient-tile" ng-repeat="p in searchResults" ng-click="openPatient(p)">
+                    <div class="tile-name">{{p.name}}</div>
+                    <div class="tile-id">{{p.identifier}}</div>
+                    <div class="tile-meta">{{p.type}} | Last: {{p.lastVisit}}</div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

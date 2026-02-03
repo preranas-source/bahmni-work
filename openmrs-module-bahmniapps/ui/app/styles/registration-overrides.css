@@ -1,0 +1,511 @@
+/**
+ * Registration app – teal header, no message bullets, styled search form.
+ * Matches previous UI: header bar, nav links, user menu, styled inputs and buttons.
+ */
+
+/* ----- Remove three dots from messages template ----- */
+.reg-wrapper .messages ul,
+.reg-wrapper .messages ul li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ----- Page background ----- */
+.reg-wrapper {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 24px;
+  box-sizing: border-box;
+}
+
+/* ----- Registration header bar (teal) ----- */
+.reg-wrapper .reg-header-wrapper .reg-header {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background: #00463f !important;
+  color: #fff !important;
+  padding: 10px 20px !important;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+.reg-wrapper .reg-header-wrapper .reg-header ul.top-nav {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+.reg-wrapper .reg-header-wrapper .reg-header ul.top-nav li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.reg-wrapper .reg-header-wrapper .reg-header .back-btn {
+  color: #fff !important;
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  margin-right: 8px !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+.reg-wrapper .reg-header-wrapper .reg-header .back-btn:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+.reg-wrapper .reg-header-wrapper .reg-header .back-btn i.fa {
+  color: #fff !important;
+}
+.reg-wrapper .reg-header-wrapper .reg-header ul.top-nav li a {
+  color: #fff !important;
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+.reg-wrapper .reg-header-wrapper .reg-header ul.top-nav li a:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+}
+.reg-wrapper .reg-header-wrapper .reg-header ul.top-nav li a i.fa {
+  color: #fff !important;
+}
+.reg-wrapper .reg-header-wrapper .reg-header .reg-header-right {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+}
+.reg-wrapper .reg-header-wrapper .reg-header .reg-header-right ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.reg-wrapper .reg-header-wrapper .reg-header .reg-header-right ul li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.reg-wrapper .reg-header-wrapper .reg-header .btn-user-info {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  color: #fff !important;
+  padding: 8px 14px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+}
+.reg-wrapper .reg-header-wrapper .reg-header .btn-user-info i.fa {
+  color: #fff !important;
+}
+.reg-wrapper .reg-header-wrapper .reg-header .reg-header-right ul li a {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+/* ----- Search / content area ----- */
+.reg-wrapper .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  box-sizing: border-box;
+}
+.reg-wrapper .reg-search-wrapper {
+  background: #fff !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 10px !important;
+  padding: 24px !important;
+  margin-top: 0 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+}
+.reg-wrapper .reg-search-wrapper .reg-search .search-seperator-l label,
+.reg-wrapper .reg-search-wrapper .reg-search .search-seperator-r label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+.reg-wrapper .reg-search-wrapper .reg-search input[type="text"] {
+  padding: 10px 12px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  min-width: 160px !important;
+  box-sizing: border-box;
+}
+.reg-wrapper .reg-search-wrapper .reg-search input[type="text"]:focus {
+  outline: none !important;
+  border-color: #00463f !important;
+  box-shadow: 0 0 0 2px rgba(0, 70, 63, 0.15);
+}
+.reg-wrapper .reg-search-wrapper .reg-search button {
+  padding: 10px 20px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  background: #88af28 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: background 0.2s;
+}
+.reg-wrapper .reg-search-wrapper .reg-search button:hover:not(:disabled) {
+  background: #7a9e22 !important;
+}
+.reg-wrapper .reg-search-wrapper .reg-search button:disabled {
+  background: #ccc !important;
+  cursor: not-allowed;
+}
+.reg-wrapper .reg-search-wrapper .reg-search .reg-srch-btn {
+  margin-top: 10px !important;
+}
+.reg-wrapper .reg-search-wrapper .reg-search .search-seperator-r .reg-srch-btn {
+  margin-top: 10px !important;
+}
+
+/* ========== New Patient form – alignment and styling ========== */
+.reg-wrapper .reg-body-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 0 32px;
+  box-sizing: border-box;
+}
+.reg-wrapper .simple-form-ui.new-patient {
+  margin: 0;
+  padding: 0;
+}
+.reg-wrapper .simple-form-ui.new-patient form {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+.reg-wrapper .simple-form-ui .box-container {
+  background: #fff !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 10px !important;
+  padding: 24px !important;
+  margin-bottom: 20px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+  box-sizing: border-box;
+}
+.reg-wrapper .simple-form-ui .box-container .registraion_legend,
+.reg-wrapper .simple-form-ui .box-container .mylegend,
+.reg-wrapper .simple-form-ui .additional-attribute .mylegend {
+  display: block;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  color: #333 !important;
+  margin: 0 0 16px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 2px solid #00463f !important;
+}
+.reg-wrapper .simple-form-ui .registraion_legend.first-registraion_legend {
+  margin-top: 0 !important;
+}
+.reg-wrapper .simple-form-ui section {
+  margin-bottom: 16px;
+}
+.reg-wrapper .simple-form-ui section:last-child {
+  margin-bottom: 0;
+}
+.reg-wrapper .simple-form-ui .form-field {
+  margin-bottom: 16px !important;
+  clear: both;
+}
+.reg-wrapper .simple-form-ui .form-field .field-attribute label {
+  display: block !important;
+  font-weight: 600 !important;
+  color: #333 !important;
+  font-size: 14px !important;
+  margin-bottom: 6px !important;
+}
+.reg-wrapper .simple-form-ui .form-field .field-value input[type="text"],
+.reg-wrapper .simple-form-ui .form-field .field-value input[type="number"],
+.reg-wrapper .simple-form-ui .form-field .field-value select {
+  padding: 10px 12px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  min-width: 140px !important;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.reg-wrapper .simple-form-ui .form-field .field-value input:focus,
+.reg-wrapper .simple-form-ui .form-field .field-value select:focus {
+  outline: none !important;
+  border-color: #00463f !important;
+  box-shadow: 0 0 0 2px rgba(0, 70, 63, 0.15);
+}
+.reg-wrapper .simple-form-ui .form-field .field-value input[type="checkbox"] {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.reg-wrapper .simple-form-ui .patient-name input,
+.reg-wrapper .simple-form-ui .patient-name-wrapper input {
+  margin-right: 12px !important;
+  margin-bottom: 8px !important;
+  min-width: 120px !important;
+}
+.reg-wrapper .simple-form-ui .photo-container-wrapper {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.reg-wrapper .simple-form-ui .photo-container {
+  display: inline-block;
+  text-align: center;
+}
+.reg-wrapper .simple-form-ui .photo-container .patient-image {
+  max-width: 120px;
+  max-height: 120px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+.reg-wrapper .simple-form-ui .asterick {
+  color: #c00;
+}
+/* Two-column layout for form-field-inline */
+.reg-wrapper .simple-form-ui .form-field-inline {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+}
+.reg-wrapper .simple-form-ui .form-field-inline .form-field {
+  margin-bottom: 0 !important;
+}
+.reg-wrapper .simple-form-ui .right-form-field {
+  float: none !important;
+}
+@media (max-width: 600px) {
+  .reg-wrapper .simple-form-ui .form-field-inline {
+    grid-template-columns: 1fr;
+  }
+}
+/* Collapsible section headers */
+.reg-wrapper .simple-form-ui .additional-attribute {
+  cursor: pointer;
+  margin: 0 0 12px !important;
+  padding: 10px 0 !important;
+  border-bottom: 1px solid #e8e8e8 !important;
+}
+.reg-wrapper .simple-form-ui .additional-attribute a {
+  color: #00463f !important;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+.reg-wrapper .simple-form-ui .additional-attribute .fa {
+  margin-right: 8px;
+  color: #00463f;
+}
+/* Submit / action buttons */
+.reg-wrapper .submit-btn-container {
+  margin-top: 24px !important;
+  padding: 20px 0 !important;
+  border-top: 1px solid #e8e8e8 !important;
+  clear: both;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.reg-wrapper .submit-btn-container button.confirm,
+.reg-wrapper .submit-btn-container button.submit-btn {
+  padding: 12px 24px !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  background: #88af28 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: background 0.2s;
+}
+.reg-wrapper .submit-btn-container button.confirm:hover,
+.reg-wrapper .submit-btn-container button.submit-btn:hover {
+  background: #7a9e22 !important;
+}
+.reg-wrapper .submit-btn-container .right {
+  float: none !important;
+  margin: 0 !important;
+}
+.reg-wrapper .simple-form-ui .box-container-patient-info {
+  margin-top: 0 !important;
+}
+.reg-wrapper .simple-form-ui .age-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+  margin-bottom: 16px;
+}
+@media (max-width: 600px) {
+  .reg-wrapper .simple-form-ui .age-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----- Identifier row: prefix + input + "Enter ID" in one aligned row ----- */
+.reg-wrapper .simple-form-ui .form-field.existing-patient {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px 24px;
+}
+.reg-wrapper .simple-form-ui .form-field.existing-patient > .field-attribute {
+  flex: 0 0 100%;
+  margin-bottom: 0;
+}
+.reg-wrapper .simple-form-ui .form-field.existing-patient > .field-value,
+.reg-wrapper .simple-form-ui .form-field.existing-patient .field-value-has-identifier {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.reg-wrapper .simple-form-ui .form-field.existing-patient .field-value select {
+  min-width: 120px;
+}
+.reg-wrapper .simple-form-ui .form-field.existing-patient .fl {
+  float: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.reg-wrapper .simple-form-ui .form-field.existing-patient .fl .field-attribute,
+.reg-wrapper .simple-form-ui .form-field.existing-patient .fl .field-value {
+  margin-bottom: 0;
+}
+.reg-wrapper .simple-form-ui .form-field.existing-patient .fl .field-attribute label {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+/* ----- Override .fl inside registration for alignment (no float) ----- */
+.reg-wrapper .simple-form-ui .fl {
+  float: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ----- Age: Years / Months / Days with add-on labels ----- */
+.reg-wrapper .simple-form-ui .age-field,
+.reg-wrapper .simple-form-ui .form-field#age .field-value {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+}
+.reg-wrapper .simple-form-ui .input-prepend {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+.reg-wrapper .simple-form-ui .input-prepend .add-on {
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  background: #f5f5f5;
+  border-right: 1px solid #ccc;
+  min-width: 52px;
+  text-align: center;
+}
+.reg-wrapper .simple-form-ui .input-prepend input {
+  width: 60px !important;
+  min-width: 60px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 10px 10px !important;
+}
+.reg-wrapper .simple-form-ui .input-prepend input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.reg-wrapper .simple-form-ui .input-prepend:focus-within {
+  border-color: #00463f;
+  box-shadow: 0 0 0 2px rgba(0, 70, 63, 0.15);
+}
+
+/* ----- DOB + Estimate + Birth time alignment ----- */
+.reg-wrapper .simple-form-ui .form-field.dob-birthtime-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px 24px;
+}
+.reg-wrapper .simple-form-ui .dob-birthtime-wrapper .field-attribute {
+  flex: 0 0 auto;
+}
+.reg-wrapper .simple-form-ui .dob-birthtime-wrapper .field-value {
+  flex: 0 0 auto;
+}
+.reg-wrapper .simple-form-ui .showOn-desktop-registration {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.reg-wrapper .simple-form-ui .showOn-desktop-registration .field-attribute.estimated-label,
+.reg-wrapper .simple-form-ui .showOn-desktop-registration .field-value {
+  margin-bottom: 0;
+}
+.reg-wrapper .simple-form-ui .showOn-small-screen-registration {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.reg-wrapper .simple-form-ui .estimate-check {
+  margin-right: 6px;
+}
+
+/* ----- Patient name row: first / middle / last in one line with gap ----- */
+.reg-wrapper .simple-form-ui .field-value.patient-name,
+.reg-wrapper .simple-form-ui .patient-name-wrapper .field-value {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+.reg-wrapper .simple-form-ui .patient-name input,
+.reg-wrapper .simple-form-ui .patient-name-wrapper input {
+  margin-right: 0 !important;
+  margin-bottom: 0 !important;
+  min-width: 120px !important;
+  flex: 1 1 140px;
+}
+
+/* ----- Box container default (first new patient card) ----- */
+.reg-wrapper .simple-form-ui .box-container-default {
+  background: #fff !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 10px !important;
+  padding: 24px !important;
+  margin-bottom: 20px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+  box-sizing: border-box;
+}
+
+/* ----- Submit area: space before WhatsApp icon ----- */
+.reg-wrapper .submit-btn-container .right {
+  margin-right: 0 !important;
+}
+.reg-wrapper .submit-btn-container span.right {
+  margin-right: 10px;
+}
+.reg-wrapper .submit-btn-container span.right:last-child {
+  margin-right: 0;
+}

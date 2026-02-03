@@ -1,0 +1,51 @@
+<!-- Consultation (OPD) Tab -->
+<div class="consultation-tab">
+    <h3>OPD Consultation</h3>
+    <div class="form-section">
+        <label>Chief Complaint</label>
+        <textarea class="form-control" rows="2" ng-model="consultationData.chiefComplaint" placeholder="Enter chief complaint"></textarea>
+    </div>
+    <div class="form-section vitals-section">
+        <label>Vitals (Read-only)</label>
+        <div class="vitals-grid">
+            <span>BP: {{vitals.bp}}</span>
+            <span>Pulse: {{vitals.pulse}}</span>
+            <span>Temp: {{vitals.temp}}°F</span>
+            <span>RR: {{vitals.rr}}</span>
+            <span>Weight: {{vitals.weight}} kg</span>
+            <span>Height: {{vitals.height}} cm</span>
+        </div>
+    </div>
+    <div class="form-section">
+        <label>Clinical Notes (SOAP)</label>
+        <div class="soap-fields">
+            <div><strong>S:</strong> <input type="text" ng-model="consultationData.clinicalNotes.subjective" placeholder="Subjective" class="form-control" /></div>
+            <div><strong>O:</strong> <input type="text" ng-model="consultationData.clinicalNotes.objective" placeholder="Objective" class="form-control" /></div>
+            <div><strong>A:</strong> <input type="text" ng-model="consultationData.clinicalNotes.assessment" placeholder="Assessment" class="form-control" /></div>
+            <div><strong>P:</strong> <input type="text" ng-model="consultationData.clinicalNotes.plan" placeholder="Plan" class="form-control" /></div>
+        </div>
+    </div>
+    <div class="form-section">
+        <label>Diagnosis</label>
+        <div class="diagnosis-list">
+            <span class="diagnosis-tag" ng-repeat="d in consultationData.diagnosis">{{d}}</span>
+        </div>
+    </div>
+    <div class="form-section">
+        <label>Prescriptions</label>
+        <table class="prescription-table">
+            <tr><th>Drug</th><th>Dose</th><th>Duration</th></tr>
+            <tr ng-repeat="p in consultationData.prescriptions">
+                <td>{{p.drug}}</td><td>{{p.dose}}</td><td>{{p.duration}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-section">
+        <label>Lab / Radiology Orders</label>
+        <p class="muted">(Order entry - to be integrated)</p>
+    </div>
+    <div class="form-section">
+        <label>Follow-up Date</label>
+        <input type="text" ng-model="consultationData.followUpDate" class="form-control" placeholder="YYYY-MM-DD" />
+    </div>
+</div>

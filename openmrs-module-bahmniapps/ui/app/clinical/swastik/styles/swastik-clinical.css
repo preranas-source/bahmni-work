@@ -1,0 +1,457 @@
+/**
+ * Swastik Hospital Clinical Module - Hospital-grade UI styles
+ * Includes minimal clinical layout (opd-wrapper) when clinical.css is not built
+ */
+
+/* Hide list bullets from messages area (empty ul/li show as dots) */
+.messages ul,
+.messages li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Minimal clinical layout - required when clinical.css 404s */
+.opd-wrapper {
+    position: relative;
+    margin: 0;
+    min-height: 500px;
+    width: 100%;
+    padding: 20px 0;
+}
+.opd-content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+.opd-content-wrapper #view-content {
+    min-height: 400px;
+}
+
+/* ========== Clinical Landing Page ========== */
+.swastik-clinical-landing {
+    padding: 20px;
+    font-family: 'Open Sans', 'Segoe UI', Arial, sans-serif;
+    background: #f5f7fa;
+}
+
+.swastik-clinical-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #0066a1;
+}
+
+.swastik-clinical-header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.swastik-clinical-header h1 i {
+    margin-right: 8px;
+    color: #0066a1;
+}
+
+.btn-back {
+    padding: 8px 16px;
+    background: #0066a1;
+    color: white !important;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.btn-back:hover {
+    background: #005080;
+}
+
+/* Search Section */
+.search-section {
+    margin-bottom: 20px;
+}
+
+.search-bar-wrapper {
+    position: relative;
+    max-width: 500px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #0066a1;
+}
+
+/* Filters */
+.filters-section {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.filter-group label {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.filter-group select {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 180px;
+}
+
+/* Queue Section */
+.landing-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+}
+
+@media (max-width: 900px) {
+    .landing-content { grid-template-columns: 1fr; }
+}
+
+.queue-section, .search-results-section {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.queue-section h2, .search-results-section h2 {
+    margin: 0 0 16px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.queue-table-wrapper {
+    overflow-x: auto;
+}
+
+.queue-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.queue-table th, .queue-table td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.queue-table th {
+    background: #f8f9fa;
+    font-weight: 600;
+}
+
+.queue-row {
+    cursor: pointer;
+}
+
+.queue-row:hover {
+    background: #f0f7fc;
+}
+
+.status-badge {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.status-waiting { background: #fff3cd; color: #856404; }
+.status-in-consultation { background: #cce5ff; color: #004085; }
+.status-completed { background: #d4edda; color: #155724; }
+.status-pending { background: #fff3cd; }
+.status-completed { background: #d4edda; }
+
+.btn-open {
+    padding: 4px 12px;
+    background: #0066a1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-open:hover {
+    background: #005080;
+}
+
+/* Patient Tiles */
+.patient-tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.patient-tile {
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid #eee;
+}
+
+.patient-tile:hover {
+    background: #e9ecef;
+    border-color: #0066a1;
+}
+
+.tile-name { font-weight: 600; margin-bottom: 4px; }
+.tile-id { font-size: 12px; color: #666; }
+.tile-meta { font-size: 11px; color: #888; margin-top: 4px; }
+
+/* ========== Clinical Workspace ========== */
+.swastik-clinical-workspace {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #f5f7fa;
+}
+
+.workspace-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 20px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.workspace-header h1 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.workspace-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr 240px;
+    gap: 0;
+    flex: 1;
+    overflow: hidden;
+}
+
+@media (max-width: 1200px) {
+    .workspace-layout { grid-template-columns: 220px 1fr 200px; }
+}
+
+@media (max-width: 900px) {
+    .workspace-layout { grid-template-columns: 1fr; }
+}
+
+/* Left Panel - Patient Summary */
+.left-panel, .right-panel {
+    background: white;
+    padding: 16px;
+    overflow-y: auto;
+    border-right: 1px solid #eee;
+}
+
+.right-panel {
+    border-right: none;
+    border-left: 1px solid #eee;
+}
+
+.panel-title {
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #333;
+}
+
+.panel-title i {
+    margin-right: 6px;
+    color: #0066a1;
+}
+
+.summary-content .summary-row {
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.summary-content .allergies {
+    color: #c00;
+}
+
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+}
+
+.badge-opd { background: #e3f2fd; color: #1565c0; }
+.badge-ipd { background: #fff3e0; color: #e65100; }
+.badge-rehab { background: #e8f5e9; color: #2e7d32; }
+
+/* Center Panel - Tabs */
+.center-panel {
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.tab-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 12px 16px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+    overflow-x: auto;
+}
+
+.tab-btn {
+    padding: 8px 14px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.tab-btn:hover {
+    background: #f0f7fc;
+}
+
+.tab-btn.active {
+    background: #0066a1;
+    color: white;
+    border-color: #0066a1;
+}
+
+.tab-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.tab-pane {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Tab content styling */
+.form-section {
+    margin-bottom: 20px;
+}
+
+.form-section label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.vitals-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.vitals-grid span {
+    padding: 8px 12px;
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+.prescription-table, .orders-table, .mar-table, .session-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.prescription-table th, .prescription-table td,
+.orders-table th, .orders-table td,
+.mar-table th, .mar-table td,
+.session-table th, .session-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.muted { color: #888; font-size: 13px; }
+
+/* Right Panel Actions */
+.action-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    text-align: left;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.action-btn:hover {
+    background: #e9ecef;
+}
+
+.alerts-section { margin-top: 20px; }
+.alert-item {
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+.alert-allergy { background: #f8d7da; color: #721c24; }
+
+.billing-section { margin-top: 20px; }
+.billing-row { margin-bottom: 4px; font-size: 13px; }
+
+/* Documents */
+.upload-section { margin-bottom: 16px; }
+.btn-upload {
+    padding: 8px 16px;
+    background: #0066a1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.doc-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.vitals-chart-placeholder {
+    padding: 40px;
+    background: #f8f9fa;
+    text-align: center;
+    color: #888;
+}

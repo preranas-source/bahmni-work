@@ -1,0 +1,81 @@
+<!-- Swastik Hospital - Patient Clinical Workspace -->
+<div class="swastik-clinical-workspace">
+    <header class="workspace-header">
+        <a href="" ng-click="$state.go('swastik.landing'); $event.preventDefault()" class="btn-back"><i class="fa fa-arrow-left"></i> Back to Search</a>
+        <h1>Clinical Workspace - {{patient.name}}</h1>
+    </header>
+
+    <div class="workspace-layout">
+        <!-- Left Panel: Patient Summary (sticky) -->
+        <aside class="left-panel patient-summary-panel">
+            <div class="panel-title"><i class="fa fa-user"></i> Patient Summary</div>
+            <div class="summary-content">
+                <div class="summary-row"><strong>{{patient.name}}</strong></div>
+                <div class="summary-row">Age: {{patient.age}} yrs | {{patient.gender}}</div>
+                <div class="summary-row">UHID: {{patient.identifier}}</div>
+                <div class="summary-row"><span class="badge" ng-class="'badge-' + patient.type">{{patient.type}}</span></div>
+                <div class="summary-row allergies" ng-if="patient.allergies && patient.allergies.length">
+                    <strong>Allergies:</strong> {{patient.allergies.join(', ')}}
+                </div>
+                <div class="summary-row">Last Visit: {{patient.lastVisit}}</div>
+            </div>
+        </aside>
+
+        <!-- Center Panel: Tab-based interface -->
+        <main class="center-panel">
+            <div class="tab-nav">
+                <button class="tab-btn" ng-repeat="tab in tabs" 
+                        ng-class="{active: activeTab===tab.id}"
+                        ng-click="setActiveTab(tab.id)">
+                    <i class="fa" ng-class="tab.icon"></i> {{tab.label}}
+                </button>
+            </div>
+            <div class="tab-content">
+                <!-- Consultation (OPD) Tab -->
+                <div ng-show="activeTab==='consultation'" class="tab-pane">
+                    <ng-include src="'swastik/views/tabs/consultationTab.html'"></ng-include>
+                </div>
+                <!-- IPD Tab -->
+                <div ng-show="activeTab==='ipd'" class="tab-pane">
+                    <ng-include src="'swastik/views/tabs/ipdTab.html'"></ng-include>
+                </div>
+                <!-- Orders Tab -->
+                <div ng-show="activeTab==='orders'" class="tab-pane">
+                    <ng-include src="'swastik/views/tabs/ordersTab.html'"></ng-include>
+                </div>
+                <!-- Rehab Tab -->
+                <div ng-show="activeTab==='rehab'" class="tab-pane">
+                    <ng-include src="'swastik/views/tabs/rehabTab.html'"></ng-include>
+                </div>
+                <!-- Documents Tab -->
+                <div ng-show="activeTab==='documents'" class="tab-pane">
+                    <ng-include src="'swastik/views/tabs/documentsTab.html'"></ng-include>
+                </div>
+                <!-- Discharge Tab -->
+                <div ng-show="activeTab==='discharge'" class="tab-pane">
+                    <ng-include src="'swastik/views/tabs/dischargeTab.html'"></ng-include>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Panel: Actions -->
+        <aside class="right-panel actions-panel">
+            <div class="panel-title"><i class="fa fa-cog"></i> Actions</div>
+            <button class="action-btn" ng-click="printPrescription()"><i class="fa fa-print"></i> Print Prescription</button>
+            <button class="action-btn" ng-click="sendWhatsApp()"><i class="fa fa-whatsapp"></i> Send via WhatsApp</button>
+            <button class="action-btn" ng-click="sendEmail()"><i class="fa fa-envelope"></i> Send via Email</button>
+
+            <div class="alerts-section" ng-if="alerts.length">
+                <div class="panel-title"><i class="fa fa-exclamation-triangle"></i> Critical Alerts</div>
+                <div class="alert-item" ng-repeat="a in alerts" ng-class="'alert-' + a.type">{{a.text}}</div>
+            </div>
+
+            <div class="billing-section">
+                <div class="panel-title"><i class="fa fa-rupee"></i> Billing Summary</div>
+                <div class="billing-row">Total: Rs. {{billingSummary.total}}</div>
+                <div class="billing-row">Paid: Rs. {{billingSummary.paid}}</div>
+                <div class="billing-row">Pending: Rs. {{billingSummary.pending}}</div>
+            </div>
+        </aside>
+    </div>
+</div>
