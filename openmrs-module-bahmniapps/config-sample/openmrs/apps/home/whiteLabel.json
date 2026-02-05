@@ -19,7 +19,7 @@
       "enabled": true,
       "title": "CLINICAL SERVICE",
       "logo": "/bahmni/images/app.png",
-      "link": "/bahmni/clinical/index.html#/swastik/landing"
+      "link": "/bahmni/home/index.html#/dashboard"
     },
     {
       "enabled": true,

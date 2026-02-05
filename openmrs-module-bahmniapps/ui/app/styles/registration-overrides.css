@@ -19,6 +19,47 @@
   box-sizing: border-box;
 }
 
+/* Footer - SIMILAR TO DASHBOARD */
+.reg-wrapper .dashboard-footer {
+  background: transparent;
+  padding: 12px 0;
+  margin-top: 350px;
+}
+.reg-wrapper .dashboard-footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+}
+.reg-wrapper .dashboard-footer-label { 
+  color: #4a4a4a;
+  font-size: 13px;
+  line-height: 1.2;
+  font-weight: 500;
+}
+.reg-wrapper .dashboard-footer-logo { 
+  height: clamp(36px, 5vh, 60px);
+  width: auto; 
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .reg-wrapper .dashboard-footer-content { 
+    justify-content: center; 
+    gap: 12px;
+  }
+  .reg-wrapper .dashboard-footer {
+    padding: 8px 0;
+  }
+}
+
 /* ----- Registration header bar (teal) ----- */
 .reg-wrapper .reg-header-wrapper .reg-header {
   display: flex !important;

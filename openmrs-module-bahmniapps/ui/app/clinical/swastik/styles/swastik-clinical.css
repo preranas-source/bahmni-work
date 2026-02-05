@@ -29,6 +29,32 @@
     min-height: 400px;
 }
 
+/* Footer (same as dashboard) */
+.dashboard-footer {
+    background: transparent;
+    padding: 18px 0;
+    margin-top: 24px;
+}
+.dashboard-footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #e9e9e9;
+    border-radius: 12px;
+}
+.dashboard-footer-label { color: #6b6b6b; font-size: 12px; line-height: 1; }
+.dashboard-footer-logo { height: clamp(44px, 6vh, 72px); width: auto; display: block; }
+
+@media (max-width: 700px) {
+    .dashboard-footer-content { justify-content: center; }
+}
+
 /* ========== Clinical Landing Page ========== */
 .swastik-clinical-landing {
     padding: 20px;

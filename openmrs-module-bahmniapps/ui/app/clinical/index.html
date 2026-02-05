@@ -42,6 +42,12 @@
             <div class="opd-wrapper">
                 <div ui-view="content" id="view-content" class="opd-content-wrapper"></div>
             </div>
+            <footer class="dashboard-footer" aria-label="App footer">
+                <div class="dashboard-footer-content">
+                    <span class="dashboard-footer-label">Powered by</span>
+                    <img class="dashboard-footer-logo" src="/bahmni/images/orelseLogo.png" alt="Orelse" />
+                </div>
+            </footer>
         </div>
         <!-- Offline locale theme (static default to avoid 404 from {{getLocaleCSS()}} before Angular loads) -->
         <link rel="stylesheet" href="../components/offline/themes/offline-language-english.css" onerror="this.remove()">
